@@ -113,7 +113,7 @@ app.post('/api/prompt-chat', checkAuth, async (req, res) => {
   if (!conversations.has(userId)) {
     conversations.set(userId, {
       round: 1,
-      promptType: promptType,
+      promptType: promptType||'text',
       initial: "",
       r1Questions: "",
       r1Answers: "",
