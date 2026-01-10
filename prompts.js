@@ -1,6 +1,6 @@
 const PROMPT_TEMPLATES = {
   
-  text: {
+  generalPrompt: {
     round1: `You are an elite prompt engineering consultant with deep expertise in AI systems and user needs.
 
 USER'S REQUEST:
@@ -156,7 +156,7 @@ CRITICAL TEST: After writing, verify:
 Generate the complete, professional prompt now. This is the deliverable they're paying for.`
   },
 
-  image: {
+  imagePrompt: {
     round1: `You are an expert AI image generation consultant specializing in Midjourney, DALL-E, Stable Diffusion, and visual prompt engineering.
 
 USER'S REQUEST:
@@ -316,7 +316,7 @@ QUALITY STANDARDS:
 Generate the complete image prompt now. Format it ready to copy-paste into the chosen platform.`
   },
 
-  video: {
+  videoPrompt: {
     round1: `You are an expert AI video generation consultant specializing in Runway, Pika, Sora, and cinematic prompt engineering.
 
 USER'S REQUEST:
@@ -482,10 +482,7 @@ QUALITY STANDARDS:
 Generate the complete video prompt now. Format it ready to use in the chosen platform.`
   },
 
-  // ============================================
-  // CODE - GitHub Copilot, Cursor, Claude Code
-  // ============================================
-  code: {
+  codePrompt: {
     round1: `You are a senior software architect and prompt engineer specializing in AI-assisted coding.
 
 USER'S REQUEST:
@@ -660,10 +657,7 @@ QUALITY STANDARDS:
 Generate the complete code prompt now. This should guide the AI to write code that passes code review.`
   },
 
-  // ============================================
-  // RESEARCH - Perplexity, Claude, Deep Analysis
-  // ============================================
-  research: {
+  researchPrompt: {
     round1: `You are an expert research consultant specializing in AI-powered research and analysis.
 
 USER'S REQUEST:
