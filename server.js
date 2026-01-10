@@ -21,9 +21,7 @@ const db = getFirestore();
 
 const conversations = new Map();
 
-const PROMPT_TEMPLATES = process.env.PROMPT_TEMPLATES_JSON 
-  ? JSON.parse(process.env.PROMPT_TEMPLATES_JSON)
-  : require('./prompts'); 
+const PROMPT_TEMPLATES = require('./prompts');
 
 const checkAuth = async (req, res, next) => {
   const header = req.headers.authorization;
@@ -130,6 +128,9 @@ app.post('/api/prompt-chat', checkAuth, async (req, res) => {
   
   const PROMPTS = PROMPT_TEMPLATES[conversation.promptType] || PROMPT_TEMPLATES.text;
   
+console.log('DEBUG: conversation.promptType =', conversation.promptType);
+console.log('DEBUG: PROMPTS exists?', !!PROMPTS);
+
   const wantsToGenerate = message.toLowerCase().includes('generate') || 
                           message.toLowerCase().includes('make it');
   
