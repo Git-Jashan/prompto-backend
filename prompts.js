@@ -1,138 +1,133 @@
 const PROMPT_TEMPLATES = {
   
   generalPrompt: {
-    round1: `You are an elite prompt engineering consultant.
+    round1: `You are an expert prompt engineer.
 
 USER'S REQUEST:
 "{user_context}"
 
-Ask 3 ESSENTIAL questions to craft a production-ready AI prompt:
+Ask 3 questions to understand WHAT they need:
 
-1. Which AI platform (ChatGPT/Claude/Gemini) and what's the core task - what should the AI actually DO?
-2. What specific content, information, or output should it create? (Be concrete - examples help)
-3. Who's the audience and what's the success measure? (How do we know it worked?)
+1. **AI & Task**: Which AI (ChatGPT/Claude/Gemini)? Say "recommend" if unsure. What should it CREATE - the final output? (Email, article, plan, script, etc.)
 
-Keep each question under 40 words. Make them answerable in 1-2 sentences.
+2. **Content & Context**: What must be IN this output? Key points, information, or features? Any personal details I need? (Your background, preferences, constraints, audience)
+
+3. **Goal & Format**: What's this for and how's it used? Who reads/sees it? Preferred length and structure?
 
 Ask now.`,
 
-    round2: `CONTEXT:
-User's Request: "{initial_context}"
-Round 1 Q&A:
-Q: {round1_questions}
-A: {round1_answers}
+    round2: `Based on:
+{round1_answers}
 
-Ask 2 STRATEGIC follow-ups:
+Ask 2 deeper questions:
 
-1. What's the exact tone/style needed? (Examples: casual blog vs technical doc vs sales copy)
-2. What should the AI absolutely NOT do or include?
+1. **Style & Specifics**: Exact tone/voice? (Professional, casual, persuasive, etc.) Must include/avoid anything specific? Examples to follow?
 
-Brief acknowledgment, then your 2 questions.
+2. **Missing Details**: What else do I need to know? Constraints, preferences, or requirements I haven't asked about?
 
-Or type 'generate' if ready for your final prompt.`,
+Or type 'generate' for your prompt.`,
 
-    round3: `CONTEXT:
-User's Request: "{initial_context}"
-
-HISTORY:
+    round3: `Based on conversation:
 {history_log}
 
-Ask 2 FINAL questions:
+Final 2 questions:
 
-1. Any specific examples, templates, or references to follow/avoid?
-2. What's the ideal length and format? (Word count, sections, bullet points, etc.)
+1. **Polish**: Any templates, references, or specific format details? How do you measure success?
 
-Or type 'generate' if ready for your final prompt.`,
+2. **Edge Cases**: Special situations to handle? Anything that could go wrong that the AI should prevent?
+
+Or type 'generate' for your prompt.`,
 
     generate: `USER'S REQUEST: "{initial_context}"
 
-CONVERSATION:
+FULL CONVERSATION:
 {history_log}
 
-Create a production-ready AI prompt. Make it copy-paste ready.
+Generate a ready-to-use AI prompt.
 
-## ROLE
-[Define AI's role in one sentence - who it is and why]
+**RECOMMENDED AI**: [Pick best: ChatGPT for creative/conversational, Claude for analytical/long-form, Gemini for research/images]
 
-## TASK
-[Exact task in 2-3 clear sentences - what to create]
+**YOUR PROMPT** (copy-paste this):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## REQUIREMENTS
-- Format: [length, structure]
-- Tone: [voice/style]
-- Must include: [key elements]
-- Must avoid: [constraints]
+You are [specific role based on task].
 
-## OUTPUT
-[Exact output format - headers, sections, etc.]
+Create [exact output type]: [clear description of what to create]
 
-## EXAMPLE (if relevant)
-[Brief example showing desired style]
+REQUIREMENTS:
+• Include: [key elements from conversation]
+• Format: [structure, length, sections]
+• Tone: [voice/style for audience]
+• Avoid: [constraints mentioned]
 
-Keep it scannable. Use bullet points. Bold key terms. Make it actionable.
+OUTPUT: [Exact format they need]
 
-Generate now.`
+[Add brief example if it helps clarify]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Generate concise, actionable prompt. No fluff.`
   },
 
   imagePrompt: {
-    round1: `You are an expert visual prompt consultant.
+    round1: `You are an expert image prompt consultant.
 
 USER'S REQUEST:
 "{user_context}"
 
-Ask 3 ESSENTIAL questions:
+Ask 3 questions to understand WHAT they need:
 
-1. Which platform (Midjourney/DALL-E/SD) and what's the MAIN SUBJECT - the hero of this image?
-2. What's happening in the scene? (Action, mood, story - not just "looks good")
-3. What's this image FOR? (Ad, social post, print, concept art - affects composition)
+1. **AI & Purpose**: Which image AI (Midjourney/DALL-E/SD)? Say "recommend" if unsure. What's this image FOR? (Logo, ad, social, website, print)
 
-Focus on CONTENT first, style second.
+2. **Visual Content**: What should be IN the image? Main subject, objects, people, setting, action? What story or message should it show?
+
+3. **Style & Mood**: Art style preference? (Photo, cartoon, 3D, minimal, etc.) Colors and mood? Any size/ratio needs?
 
 Ask now.`,
 
-    round2: `CONTEXT:
-User's Request: "{initial_context}"
-Round 1 Q&A:
-Q: {round1_questions}
-A: {round1_answers}
+    round2: `Based on:
+{round1_answers}
 
-Ask 2 follow-ups:
+Ask 2 deeper questions:
 
-1. Lighting and color mood? (Golden hour/dramatic/soft + color palette if specific)
-2. Any text in image + technical needs? (Aspect ratio, resolution, what to avoid)
+1. **Details & Lighting**: What lighting/atmosphere? Specific details to emphasize? Any text or graphics in image? Camera angle?
 
-Or type 'generate' for your final image prompt.`,
+2. **Technical & Constraints**: Resolution/quality needs? What to absolutely AVOID? Any reference images or styles to match?
 
-    round3: `CONTEXT:
-User's Request: "{initial_context}"
+Or type 'generate' for your prompt.`,
 
-HISTORY:
+    round3: `Based on conversation:
 {history_log}
 
-Ask 2 FINAL questions:
+Final 2 questions:
 
-1. Specific details to emphasize? (Textures, expressions, focal points)
-2. Platform parameters needed? (MJ: --ar, --v, --s | DALL-E: size | SD: CFG, steps)
+1. **Fine-tune**: Specific textures, expressions, or focal points? Composition details?
 
-Or type 'generate' for your final image prompt.`,
+2. **Platform Settings**: Need specific parameters? (--ar, --v, CFG, steps, etc.) Anything else for the perfect image?
+
+Or type 'generate' for your prompt.`,
 
     generate: `USER'S REQUEST: "{initial_context}"
 
-CONVERSATION:
+FULL CONVERSATION:
 {history_log}
 
-Create a production-ready image prompt. Optimized for copy-paste.
+Generate a ready-to-use image prompt.
 
-[Main subject], [doing what], [in what setting]. [Camera angle], [lighting type], [mood]. [Art style], [quality level]. [Color palette if specified]. [Platform parameters].
+**RECOMMENDED AI**: [Pick best: Midjourney for artistic, DALL-E for simple/quick, SD for control]
 
-Negative: [What to avoid - artifacts, unwanted elements]
+**YOUR PROMPT** (copy-paste this):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Example structure:
-"A sleek sports car drifting through Tokyo streets at night, low angle shot, neon reflections on wet pavement, cinematic, photorealistic, 8K. Vibrant blues and magentas. --ar 16:9 --v 6. Negative: blur, distortion, text"
+[Main subject], [action/pose], [setting]. [Camera angle], [lighting], [mood]. [Art style], [quality]. [Colors]. [Platform parameters].
 
-Keep it under 200 words. Subject first, details after. No fluff.
+Negative: [Things to avoid]
 
-Generate now.`
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Example: "Sleek water drop suspended mid-air, reflecting 'AQUA SENTINEL' text, dark blue gradient. Straight angle, warm inviting light, serene. Minimalist photorealistic, 8K. Blues and whites. --ar 1:1 --v 6. Negative: blur, noise, distortion"
+
+Generate concise, visual-focused prompt.`
   },
 
   videoPrompt: {
@@ -141,67 +136,69 @@ Generate now.`
 USER'S REQUEST:
 "{user_context}"
 
-Ask 3 ESSENTIAL questions:
+Ask 3 questions to understand WHAT they need:
 
-1. Which platform (Runway/Pika/Sora) and what's the STORY - what actually happens in this video?
-2. How long (5s/15s/30s) and what are the key moments? (Beginning, middle, end)
-3. Camera movement and subject movement? (Static cam + moving subject, OR moving cam + static subject)
+1. **AI & Purpose**: Which video AI (Runway/Pika/Sora)? Say "recommend" if unsure. What's this video FOR? (Ad, social, explainer, demo)
 
-Focus on the SEQUENCE of events, not just visuals.
+2. **Story & Content**: What HAPPENS in the video? Timeline of events? What message or emotion should it convey? Duration?
+
+3. **Visuals & Movement**: What should viewers SEE? Camera movement? Subject/object movement? Visual style?
 
 Ask now.`,
 
-    round2: `CONTEXT:
-User's Request: "{initial_context}"
-Round 1 Q&A:
-Q: {round1_questions}
-A: {round1_answers}
+    round2: `Based on:
+{round1_answers}
 
-Ask 2 follow-ups:
+Ask 2 deeper questions:
 
-1. Visual style and lighting during motion? (Cinematic/documentary/anime + lighting changes)
-2. Pacing and technical specs? (Slow/fast, resolution, frame rate, motion intensity)
+1. **Style & Details**: Lighting and colors? Any text, logos, or graphics? What to emphasize visually? Pacing (slow/fast)?
 
-Or type 'generate' for your final video prompt.`,
+2. **Technical & Constraints**: Resolution/frame rate needs? What motion issues to prevent? (Jitter, blur, warping)
 
-    round3: `CONTEXT:
-User's Request: "{initial_context}"
+Or type 'generate' for your prompt.`,
 
-HISTORY:
+    round3: `Based on conversation:
 {history_log}
 
-Ask 2 FINAL questions:
+Final 2 questions:
 
-1. Specific motion behaviors or transitions? (Smooth/dynamic/slow-mo, scene changes)
-2. What motion artifacts to prevent? (Jitter, warping, morphing - common issues)
+1. **Motion Details**: Specific transitions or effects? How scenes should flow? Any special camera techniques?
 
-Or type 'generate' for your final video prompt.`,
+2. **Final Polish**: Platform parameters needed? Anything else for the perfect video? Audio/music?
+
+Or type 'generate' for your prompt.`,
 
     generate: `USER'S REQUEST: "{initial_context}"
 
-CONVERSATION:
+FULL CONVERSATION:
 {history_log}
 
-Create a production-ready video prompt. Beat-by-beat timing.
+Generate a ready-to-use video prompt.
 
-0-Xs: [What happens first - scene intro]
-X-Ys: [Main action - key moment]
-Y-Zs: [Conclusion - how it ends]
+**RECOMMENDED AI**: [Pick best: Runway for versatility, Pika for animations, Sora for complex]
 
-Camera: [Static/panning/tracking - movement type]
-Subject: [How subject moves - actions]
-Style: [Visual aesthetic - lighting, mood]
-Technical: [Resolution, fps, aspect ratio]
+**YOUR PROMPT** (copy-paste this):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Negative: [Motion artifacts to avoid]
-Platform params: [Model-specific settings]
+TIMELINE:
+0-Xs: [What happens, what appears]
+X-Ys: [Main action, key content]
+Y-Zs: [Ending, final message]
 
-Example:
-"0-5s: Logo fades in on black. 5-15s: Logo pieces bounce and assemble. 15-20s: CTA text slides in. Static camera, slight rhythmic bounce. Minimalist B&W, 1080p 60fps. No jitter, warping. --motion 8"
+VISUALS:
+Camera: [Movement type]
+Subject: [How things move]
+Style: [Visual aesthetic, lighting, colors]
+Content: [Text/graphics to include]
 
-Under 250 words. Timeline first, details after.
+TECHNICAL: [Resolution] [fps] [ratio] [platform settings]
+AVOID: [Motion artifacts - jitter, blur, etc.]
 
-Generate now.`
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Example: "0-5s: Black screen, 'PROMPTO' logo fades in. 5-15s: Icons showing 5 prompt types appear. 15-25s: Demo of prompt generation. 25-30s: 'Visit Prompto' CTA. Camera: Static with subtle zoom. Subject: Text/graphics slide in. Style: Minimalist B&W, clean. Content: Logo, features, CTA. 1080p 60fps 16:9. Avoid: jitter, spelling errors."
+
+Generate timeline-focused prompt.`
   },
 
   codePrompt: {
@@ -210,83 +207,79 @@ Generate now.`
 USER'S REQUEST:
 "{user_context}"
 
-Ask 3 ESSENTIAL questions:
+Ask 3 questions to understand WHAT they need:
 
-1. Language/framework (Python/JS/React/etc.) and what specific problem does this code SOLVE?
-2. What are the inputs and expected outputs? (Be concrete with examples)
-3. Code quality level needed? (Quick prototype vs production-grade with tests)
+1. **Language & Problem**: Language/framework (Python/JS/React/Java)? Say "recommend" if unsure. What problem does this SOLVE? What should users DO with it?
 
-Focus on WHAT it needs to DO, not how to build it yet.
+2. **Features & Inputs/Outputs**: What are the main FEATURES? What goes in (user actions, data) and what comes out? Concrete examples?
+
+3. **Context & Quality**: Your coding experience? (Beginner/intermediate/expert) Quick prototype or production-ready? Who uses this and how?
 
 Ask now.`,
 
-    round2: `CONTEXT:
-User's Request: "{initial_context}"
-Round 1 Q&A:
-Q: {round1_questions}
-A: {round1_answers}
+    round2: `Based on:
+{round1_answers}
 
-Ask 2 follow-ups:
+Ask 2 deeper questions:
 
-1. Architecture/patterns preferred? (OOP/functional, specific design patterns, file structure)
-2. Error handling and edge cases? (What could go wrong, validation needs, testing requirements)
+1. **Architecture & Edge Cases**: Preferred structure? (OOP, functional, MVC, etc.) What could go wrong? How to handle errors and validation?
 
-Or type 'generate' for your final code prompt.`,
+2. **Tech & Testing**: Specific libraries to use/avoid? File structure? Testing needs? Performance requirements?
 
-    round3: `CONTEXT:
-User's Request: "{initial_context}"
+Or type 'generate' for your prompt.`,
 
-HISTORY:
+    round3: `Based on conversation:
 {history_log}
 
-Ask 2 FINAL questions:
+Final 2 questions:
 
-1. Dependencies and constraints? (Libraries to use/avoid, version requirements)
-2. Code style and documentation? (Comments level, naming conventions, what NOT to do)
+1. **Code Style**: Comments level? Naming conventions? Any code style guide? (PEP8, ESLint, etc.)
 
-Or type 'generate' for your final code prompt.`,
+2. **Missing Features**: Any scenarios or features I haven't covered? Security concerns? Deployment considerations?
+
+Or type 'generate' for your prompt.`,
 
     generate: `USER'S REQUEST: "{initial_context}"
 
-CONVERSATION:
+FULL CONVERSATION:
 {history_log}
 
-Create a production-ready code generation prompt.
+Generate a ready-to-use code prompt.
 
-## ROLE
-You are a [senior/mid/junior] [language] [domain] engineer.
+**RECOMMENDED TECH**: [Pick best stack based on needs]
 
-## TASK
-Build [specific functionality] that [solves what problem].
+**YOUR PROMPT** (copy-paste this):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Input: [concrete example]
-Output: [expected result]
+You are a [level] [language] engineer.
 
-## TECHNICAL REQUIREMENTS
-- Language: [version]
-- Framework/Libraries: [specific ones]
-- Architecture: [pattern if any]
+BUILD: [Project name/type] that [solves what]
 
-## CODE QUALITY
-- Error handling: [approach]
-- Testing: [unit/integration if needed]
-- Comments: [level of documentation]
-- Style: [PEP8/ESLint/etc.]
+FEATURES:
+• [Feature 1 - what it does]
+• [Feature 2 - what it does]
+• [Feature 3 - what it does]
 
-## CONSTRAINTS
-- Do NOT use: [forbidden approaches/libraries]
-- Must handle: [edge cases]
-- Performance: [if critical]
+INPUT: [Concrete example]
+OUTPUT: [Expected result]
 
-## OUTPUT FORMAT
-[File structure if multi-file, otherwise single file with sections]
+TECH: [Language version], [framework], [libraries]
+ARCHITECTURE: [Pattern if specified]
 
-Example:
-"You are a senior Python backend engineer. Build a REST API endpoint that validates email addresses and returns formatted results. Input: raw email string. Output: {valid: bool, formatted: string}. Use FastAPI, include async, handle malformed inputs, add docstrings. PEP8 compliant. Return working code with example usage."
+REQUIREMENTS:
+• Error handling: [How to handle errors]
+• Testing: [What to test]
+• Code style: [Style guide]
+• Must handle: [Edge cases]
+• Avoid: [Constraints]
 
-Under 300 words. Concrete examples. No vague requirements.
+OUTPUT: [File structure]. Include working code with examples and tests.
 
-Generate now.`
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Example: "You are a senior JS engineer. BUILD: NBA GM game that lets users manage teams, make trades, simulate games. FEATURES: Team selection, player management, trade validation, game simulation. INPUT: User picks team, sets lineup. OUTPUT: Game results, stats. TECH: React 18, Redux. Error handling: Validate trades (salary cap). Testing: Unit tests for trade logic. ESLint. Must handle: Invalid trades, roster limits. OUTPUT: Multi-file React app with components and tests."
+
+Generate feature-focused prompt.`
   },
 
   researchPrompt: {
@@ -295,83 +288,82 @@ Generate now.`
 USER'S REQUEST:
 "{user_context}"
 
-Ask 3 ESSENTIAL questions:
+Ask 3 questions to understand WHAT they need:
 
-1. Which AI (Perplexity/Claude with search/ChatGPT) and what's the CORE QUESTION to answer?
-2. Depth needed? (Quick overview vs deep analysis - affects source count and length)
-3. How will this be used? (Decision-making, presentation, report - affects format)
+1. **AI & Question**: Which research AI (Perplexity/Claude/ChatGPT)? Say "recommend" if unsure. What's the CORE QUESTION you need answered?
 
-Focus on the RESEARCH QUESTION, not the format yet.
+2. **Scope & Purpose**: What topics to cover? Include/exclude? Quick overview or deep dive? What will you DO with this research?
+
+3. **Audience & Sources**: Who's this for? (You, team, investors, general) Source preferences? (Academic, news, industry) How recent?
 
 Ask now.`,
 
-    round2: `CONTEXT:
-User's Request: "{initial_context}"
-Round 1 Q&A:
-Q: {round1_questions}
-A: {round1_answers}
+    round2: `Based on:
+{round1_answers}
 
-Ask 2 follow-ups:
+Ask 2 deeper questions:
 
-1. Source preferences and recency? (Academic/news/industry, how recent, any to avoid)
-2. Perspective and tone? (Neutral analysis vs critical vs advocacy, technical level)
+1. **Coverage & Analysis**: What aspects to emphasize? Any comparisons needed? Neutral or specific perspective? Technical level for audience?
 
-Or type 'generate' for your final research prompt.`,
+2. **Structure & Details**: What sections or questions to answer? Citation style? Any specific data, stats, or examples needed?
 
-    round3: `CONTEXT:
-User's Request: "{initial_context}"
+Or type 'generate' for your prompt.`,
 
-HISTORY:
+    round3: `Based on conversation:
 {history_log}
 
-Ask 2 FINAL questions:
+Final 2 questions:
 
-1. Coverage scope? (What to emphasize, what to exclude, geographical/temporal bounds)
-2. Citation style and structure? (APA/MLA/links, sections needed, length)
+1. **Depth & Boundaries**: Any time/geographic limits? How deep on each topic? Missing areas to cover?
 
-Or type 'generate' for your final research prompt.`,
+2. **Final Requirements**: Length preference? Success criteria - how do you know it's complete? Format details?
+
+Or type 'generate' for your prompt.`,
 
     generate: `USER'S REQUEST: "{initial_context}"
 
-CONVERSATION:
+FULL CONVERSATION:
 {history_log}
 
-Create a production-ready research prompt.
+Generate a ready-to-use research prompt.
 
-## RESEARCH ROLE
-You are an expert [domain] analyst researching [topic].
+**RECOMMENDED AI**: [Pick best: Perplexity for current, Claude for deep, ChatGPT for balanced]
 
-## CORE QUESTION
-[Specific question to answer - be precise]
+**YOUR PROMPT** (copy-paste this):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## SCOPE
-- Include: [what's in scope]
-- Exclude: [what's out of scope]
-- Time period: [recency requirements]
-- Geography: [if relevant]
+You are an expert [domain] analyst.
 
-## SOURCES
-- Types: [academic/news/industry/government]
-- Recency: [past year/5 years/etc.]
-- Credibility: [peer-reviewed/mainstream/etc.]
+RESEARCH QUESTION: [Specific question to answer]
 
-## ANALYSIS
-- Perspective: [neutral/critical/balanced]
-- Must cover: [key aspects]
-- Compare: [if comparative analysis]
+SCOPE:
+• Include: [Topics to cover]
+• Exclude: [Out of scope]
+• Focus: [What to emphasize]
+• Boundaries: [Time period, geography]
 
-## OUTPUT
-- Format: [report/summary/Q&A]
-- Length: [word count or sections]
-- Citations: [style and frequency]
-- Audience: [technical/general/executive]
+SOURCES:
+• Types: [Academic, news, industry, government]
+• Recency: [How recent - 2023+, last 5 years, etc.]
+• Credibility: [Peer-reviewed, mainstream, official]
 
-Example:
-"You are an expert climate policy analyst. Research: What are the most effective carbon reduction strategies implemented by EU countries in 2023-2024? Include: Policy details, implementation results, cost-benefit. Exclude: Proposals not yet enacted. Sources: Government reports, peer-reviewed studies from 2023-2024. Neutral analysis. Output: 1500-word report with intro, 3 strategy sections, conclusion. APA citations. Audience: Policy makers."
+ANALYSIS:
+• Perspective: [Neutral, critical, balanced]
+• Compare: [What to compare if needed]
+• Must answer: [Specific sub-questions]
 
-Under 350 words. Clear question. Specific boundaries.
+OUTPUT:
+• Format: [Report, summary, Q&A]
+• Structure: [Sections needed]
+• Length: [Word count range]
+• Citations: [Style - APA, MLA, links]
+• Audience: [Technical level]
 
-Generate now.`
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Example: "You are an expert water tech analyst. QUESTION: What are most effective IoT methods for detecting drinking water pollutants, market competition, and challenges? SCOPE: Include IoT sensors, pollutants tracked, competitors, costs. Exclude non-IoT, wastewater. Focus: Market landscape, technical feasibility. 2021-2024 data. SOURCES: Academic journals, industry reports, 2021+, peer-reviewed. ANALYSIS: Neutral, compare sensor types, answer: what sensors work, who's in market, what challenges exist. OUTPUT: Report with intro, tech overview, market analysis, challenges, conclusion. 1500 words. Links for citations. For investors + product team."
+
+Generate question-focused prompt.`
   }
 
 };
