@@ -236,9 +236,6 @@ console.log('DEBUG: PROMPTS exists?', !!PROMPTS);
     
     const aiReply = response.data.choices[0].message.content;
 
-    let finalReply = aiReply;
-    let recommendedAi = null;
-
     if (!isFinalGeneration) {
       if (conversation.round === 1) {
         conversation.r1Questions = aiReply;
@@ -250,23 +247,14 @@ console.log('DEBUG: PROMPTS exists?', !!PROMPTS);
       
       conversation.round++;
     } else {
-      if (aiReply.includes('@@@')) {
-        const parts = aiReply.split('@@@');
-        if (parts.length >= 2) {
-            recommendedAi = parts[0].trim();
-            finalReply = parts[1].trim();    
-        }
-      }
-
       await incrementUsage(userId);
       conversations.delete(userId);
     }
-  
+    
     const limitInfo = await checkDailyLimit(userId);
-  
+    
     res.json({ 
-      reply: finalReply,            
-      recommendedAi: recommendedAi,
+      reply: aiReply,
       isFinalGeneration: isFinalGeneration,
       currentRound: conversation.round,
       remainingPrompts: limitInfo.remaining
@@ -276,7 +264,7 @@ console.log('DEBUG: PROMPTS exists?', !!PROMPTS);
     console.error("Groq Error:", error.response ? error.response.data : error.message);
     res.status(500).json({ error: "Failed to fetch response from AI" });
   }
-})
+});
 
 app.post('/api/reset-conversation', checkAuth, (req, res) => {
   const userId = req.user.uid;
