@@ -50,7 +50,6 @@ Generate a ready-to-use AI prompt.
 |||SPLIT_HERE|||
 
 **YOUR PROMPT** (copy-paste this):
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 You are [specific role based on task].
 
@@ -65,8 +64,6 @@ REQUIREMENTS:
 OUTPUT: [Exact format they need]
 
 [Add brief example if it helps clarify]
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Generate concise, actionable prompt. No fluff.`
   },
@@ -121,13 +118,10 @@ Generate a ready-to-use image prompt.
 |||SPLIT_HERE|||
 
 **YOUR PROMPT** (copy-paste this):
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 [Main subject], [action/pose], [setting]. [Camera angle], [lighting], [mood]. [Art style], [quality]. [Colors]. [Platform parameters].
 
 Negative: [Things to avoid]
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Example: "Sleek water drop suspended mid-air, reflecting 'AQUA SENTINEL' text, dark blue gradient. Straight angle, warm inviting light, serene. Minimalist photorealistic, 8K. Blues and whites. --ar 1:1 --v 6. Negative: blur, noise, distortion"
 
@@ -185,7 +179,6 @@ Generate a ready-to-use video prompt.
 |||SPLIT_HERE|||
 
 **YOUR PROMPT** (copy-paste this):
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 TIMELINE:
 0-Xs: [What happens, what appears]
@@ -201,7 +194,6 @@ Content: [Text/graphics to include]
 TECHNICAL: [Resolution] [fps] [ratio] [platform settings]
 AVOID: [Motion artifacts - jitter, blur, etc.]
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Example: "0-5s: Black screen, 'PROMPTO' logo fades in. 5-15s: Icons showing 5 prompt types appear. 15-25s: Demo of prompt generation. 25-30s: 'Visit Prompto' CTA. Camera: Static with subtle zoom. Subject: Text/graphics slide in. Style: Minimalist B&W, clean. Content: Logo, features, CTA. 1080p 60fps 16:9. Avoid: jitter, spelling errors."
 
@@ -255,11 +247,9 @@ Generate a ready-to-use code prompt.
 
 **RECOMMENDED TECH**: [Pick best stack based on needs]
 
-
 |||SPLIT_HERE|||
 
 **YOUR PROMPT** (copy-paste this):
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 You are a [level] [language] engineer.
 
@@ -284,8 +274,6 @@ REQUIREMENTS:
 • Avoid: [Constraints]
 
 OUTPUT: [File structure]. Include working code with examples and tests.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Example: "You are a senior JS engineer. BUILD: NBA GM game that lets users manage teams, make trades, simulate games. FEATURES: Team selection, player management, trade validation, game simulation. INPUT: User picks team, sets lineup. OUTPUT: Game results, stats. TECH: React 18, Redux. Error handling: Validate trades (salary cap). Testing: Unit tests for trade logic. ESLint. Must handle: Invalid trades, roster limits. OUTPUT: Multi-file React app with components and tests."
 
@@ -339,11 +327,9 @@ Generate a ready-to-use research prompt.
 
 **RECOMMENDED AI**: [Pick best: Perplexity for current, Claude for deep, ChatGPT for balanced]
 
-
 |||SPLIT_HERE|||
 
 **YOUR PROMPT** (copy-paste this):
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 You are an expert [domain] analyst.
 
@@ -371,8 +357,6 @@ OUTPUT:
 • Length: [Word count range]
 • Citations: [Style - APA, MLA, links]
 • Audience: [Technical level]
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Example: "You are an expert water tech analyst. QUESTION: What are most effective IoT methods for detecting drinking water pollutants, market competition, and challenges? SCOPE: Include IoT sensors, pollutants tracked, competitors, costs. Exclude non-IoT, wastewater. Focus: Market landscape, technical feasibility. 2021-2024 data. SOURCES: Academic journals, industry reports, 2021+, peer-reviewed. ANALYSIS: Neutral, compare sensor types, answer: what sensors work, who's in market, what challenges exist. OUTPUT: Report with intro, tech overview, market analysis, challenges, conclusion. 1500 words. Links for citations. For investors + product team."
 
