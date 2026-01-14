@@ -45,6 +45,13 @@ FULL CONVERSATION:
 
 Generate a ready-to-use AI prompt.
 
+**STRICT RESPONSE FORMAT:**
+1. First line: RECOMMENDED AI.
+2. Second line: The separator "|||SPLIT_HERE|||" exactly.
+3. Remaining lines: The PROMPT.
+
+Follow this template exactly:
+
 RECOMMENDED AI: [Pick best: ChatGPT for creative/conversational, Claude for analytical/long-form, Gemini for research/images]
 
 |||SPLIT_HERE|||
@@ -113,6 +120,13 @@ FULL CONVERSATION:
 
 Generate a ready-to-use image prompt.
 
+**STRICT RESPONSE FORMAT:**
+1. First line: RECOMMENDED AI.
+2. Second line: The separator "|||SPLIT_HERE|||" exactly.
+3. Remaining lines: The PROMPT.
+
+Follow this template exactly:
+
 RECOMMENDED AI: [Pick best: Midjourney for artistic, DALL-E for simple/quick, SD for control]
 
 |||SPLIT_HERE|||
@@ -173,8 +187,14 @@ FULL CONVERSATION:
 
 Generate a ready-to-use video prompt.
 
-RECOMMENDED AI: [Pick best: Runway for versatility, Pika for animations, Sora for complex]
+**STRICT RESPONSE FORMAT:**
+1. First line: RECOMMENDED AI.
+2. Second line: The separator "|||SPLIT_HERE|||" exactly.
+3. Remaining lines: The PROMPT.
 
+Follow this template exactly:
+
+RECOMMENDED AI: [Pick best: Runway for versatility, Pika for animations, Sora for complex]
 
 |||SPLIT_HERE|||
 
@@ -244,6 +264,13 @@ FULL CONVERSATION:
 {history_log}
 
 Generate a ready-to-use code prompt.
+
+**STRICT RESPONSE FORMAT:**
+1. First line: RECOMMENDED TECH.
+2. Second line: The separator "|||SPLIT_HERE|||" exactly.
+3. Remaining lines: The PROMPT.
+
+Follow this template exactly:
 
 RECOMMENDED TECH: [Pick best stack based on needs]
 
@@ -324,6 +351,13 @@ FULL CONVERSATION:
 {history_log}
 
 Generate a ready-to-use research prompt.
+
+**STRICT RESPONSE FORMAT:**
+1. First line: RECOMMENDED AI.
+2. Second line: The separator "|||SPLIT_HERE|||" exactly.
+3. Remaining lines: The PROMPT.
+
+Follow this template exactly:
 
 RECOMMENDED AI: [Pick best: Perplexity for current, Claude for deep, ChatGPT for balanced]
 
