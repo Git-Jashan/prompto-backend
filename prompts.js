@@ -45,11 +45,11 @@ FULL CONVERSATION:
 
 Generate a ready-to-use AI prompt.
 
-**RECOMMENDED AI**: [Pick best: ChatGPT for creative/conversational, Claude for analytical/long-form, Gemini for research/images]
+RECOMMENDED AI: [Pick best: ChatGPT for creative/conversational, Claude for analytical/long-form, Gemini for research/images]
 
 |||SPLIT_HERE|||
 
-**YOUR PROMPT** (copy-paste this):
+PROMPT:
 
 You are [specific role based on task].
 
@@ -113,11 +113,11 @@ FULL CONVERSATION:
 
 Generate a ready-to-use image prompt.
 
-**RECOMMENDED AI**: [Pick best: Midjourney for artistic, DALL-E for simple/quick, SD for control]
+RECOMMENDED AI: [Pick best: Midjourney for artistic, DALL-E for simple/quick, SD for control]
 
 |||SPLIT_HERE|||
 
-**YOUR PROMPT** (copy-paste this):
+PROMPT:
 
 [Main subject], [action/pose], [setting]. [Camera angle], [lighting], [mood]. [Art style], [quality]. [Colors]. [Platform parameters].
 
@@ -173,12 +173,12 @@ FULL CONVERSATION:
 
 Generate a ready-to-use video prompt.
 
-**RECOMMENDED AI**: [Pick best: Runway for versatility, Pika for animations, Sora for complex]
+RECOMMENDED AI: [Pick best: Runway for versatility, Pika for animations, Sora for complex]
 
 
 |||SPLIT_HERE|||
 
-**YOUR PROMPT** (copy-paste this):
+PROMPT:
 
 TIMELINE:
 0-Xs: [What happens, what appears]
@@ -245,11 +245,11 @@ FULL CONVERSATION:
 
 Generate a ready-to-use code prompt.
 
-**RECOMMENDED TECH**: [Pick best stack based on needs]
+RECOMMENDED TECH: [Pick best stack based on needs]
 
 |||SPLIT_HERE|||
 
-**YOUR PROMPT** (copy-paste this):
+PROMPT:
 
 You are a [level] [language] engineer.
 
@@ -325,11 +325,11 @@ FULL CONVERSATION:
 
 Generate a ready-to-use research prompt.
 
-**RECOMMENDED AI**: [Pick best: Perplexity for current, Claude for deep, ChatGPT for balanced]
+RECOMMENDED AI: [Pick best: Perplexity for current, Claude for deep, ChatGPT for balanced]
 
 |||SPLIT_HERE|||
 
-**YOUR PROMPT** (copy-paste this):
+PROMPT:
 
 You are an expert [domain] analyst.
 
